@@ -94,8 +94,8 @@ const ResizableComponent = () => {
                     {...pluginDragBarProps}
                 />
                 <div className={"grow bg-darker contents"}>
-                    DataNeuron
-                    <h1>Api Call Count = {count}</h1>
+                    DataNeuron Reception
+                    <h1>Calling Count = {count}</h1>
                 </div>
             </div>
             <Splitter
