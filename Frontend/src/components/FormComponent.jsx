@@ -1,14 +1,11 @@
 import React from "react";
 
 const FormComponent = ({ formData, onFormChange, onSubmit }) => {
-    // Handle input changes and update form data
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // Update the form data and notify the parent component
         onFormChange({ ...formData, [name]: value });
     };
     const handleSubmit = () => {
-        // Handle form submission using the onSubmit prop
         onSubmit(formData);
     };
 
@@ -29,19 +26,19 @@ const FormComponent = ({ formData, onFormChange, onSubmit }) => {
                         className="w-full px-3 py-2 border rounded bg-darker text-white"
                     />
                 </div>
-                
+                 {/* lastName */}
                 <div className="mb-4">
-                <label htmlFor="age" className="block text-white">
-                Last Name:
-                </label>
-                <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded bg-darker text-white"
-                />
+                    <label htmlFor="age" className="block text-white">
+                        Last Name:
+                    </label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border rounded bg-darker text-white"
+                    />
                 </div>
                 {/* email */}
                 <div className="mb-4">
@@ -69,7 +66,6 @@ const FormComponent = ({ formData, onFormChange, onSubmit }) => {
                     onClick={handleSubmit}
                     className="px-4 py-2 mr-2 bg-blue-500 text-white rounded"
                 >
-                    {/* Display "Update" if form has an ID, otherwise "Add" */}
                     {formData.id ? "Update" : "Add"}
                 </button>
             </form>

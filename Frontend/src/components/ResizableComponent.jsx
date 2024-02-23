@@ -7,12 +7,10 @@ import FormComponent from "./FormComponent";
 import { addData, getData, updateData } from "../api/Apis";
 
 const ResizableComponent = () => {
-    // State variables for table data, count, and form data
     const [tableData, setTableData] = useState([]);
     const [count, setCount] = useState([]);
     const [formData, setFormData] = useState({ id: "", firstName: "", lastName: "", email: "" });
 
-    // Hooks for resizable components
     const {
         isDragging: isTerminalDragging,
         position: terminalH,
@@ -34,7 +32,6 @@ const ResizableComponent = () => {
         reverse: true
     });
 
-    // Function to fetch data from the API
     const fetchData = async () => {
         try {
             const response = await getData();
@@ -48,17 +45,13 @@ const ResizableComponent = () => {
             console.error("An unexpected error occurred:", error);
         }
     };
-
-    // useEffect to fetch data on component mount
     useEffect(() => {
         fetchData();
     }, []);
 
-    // Function to handle form submission (add/update data)
     const handleSubmit = async (formData) => {
         try {
             if (formData.id) {
-                // If formData has an 'id', it's an existing item, so update
                 await updateData(formData);
                 setTableData(prevData =>
                     prevData.map(item => (item._id === formData.id ? formData : item))
@@ -66,7 +59,6 @@ const ResizableComponent = () => {
                 setFormData({ id: "", firstName: "", lastName: "", email: "" });
                 setCount(count + 1);
             } else {
-                // If formData doesn't have an 'id', it's a new item, so add
                 await addData(formData);
                 setTableData([...tableData, formData]);
                 setFormData({ id: "", firstName: "", lastName: "", email: "" });
@@ -75,10 +67,9 @@ const ResizableComponent = () => {
         } catch (error) {
             console.error("An unexpected error occurred:", error);
         }
-        // window.location.reload();
+        window.location.reload();
     };
 
-    // Function to handle edit button click (populate form for editing)
     const handleEditButtonClick = (item) => {
         console.log(item._id);
         setFormData({ id: item._id, firstName: item.firstName, lastName: item.lastName, email: item.email });
@@ -86,8 +77,6 @@ const ResizableComponent = () => {
     const handleFormChange = (updatedFormData) => {
         setFormData(updatedFormData);
     };
-
-    // JSX structure for the resizable layout
     return (
         <div className={"flex flex-column h-screen bg-dark font-mono color-white overflow-hidden"}>
             <div className={"flex grow"}>

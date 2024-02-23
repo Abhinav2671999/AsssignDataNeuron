@@ -7,7 +7,6 @@ const Splitter = ({
     isDragging,
     ...props
 }) => {
-    // State to track whether the splitter is focused
     const [isFocused, setIsFocused] = useState(false);
 
     return (
