@@ -6,9 +6,7 @@ let addUpdateCount = 0;
 export const sendReservation = async (req, res, next) => {
     try {
         const myData = req.body;
-        if (!myData || !myData.firstName || !myData.lastName || !myData.email) {
-            return next(new ErrorHandler("All fields are required", 400));
-        }
+       
 
         // Add data to the database
         const createdReservation = await Reservation.create(myData);
