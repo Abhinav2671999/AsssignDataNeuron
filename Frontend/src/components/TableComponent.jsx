@@ -19,7 +19,7 @@ const TableComponent = ({ data, onEditButtonClick }) => {
                             <td>{item.lastName}</td>
                             <td>{item.email}</td>
                             <td>
-                                <button onClick={() => { onEditButtonClick(item) }} className="px-6 py-2 mr-2 bg-blue-500 text-white rounded">
+                                <button onClick={() => { onEditButtonClick(item) }} className="px-6 py-2 mr-2 bg-neutral-700 text-white rounded">
                                     Edit
                                 </button>
                             </td>

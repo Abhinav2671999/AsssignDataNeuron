@@ -64,7 +64,7 @@ const FormComponent = ({ formData, onFormChange, onSubmit }) => {
                 <button
                     type="button"
                     onClick={handleSubmit}
-                    className="px-4 py-2 mr-2 bg-blue-500 text-white rounded"
+                    className="px-4 py-2 mr-2 bg-neutral-700 text-white rounded"
                 >
                     {formData.id ? "Update" : "Add"}
                 </button>

@@ -29,7 +29,7 @@ const ResizableComponent = () => {
         axis: "x",
         initial: 500,
         min: 250,
-        reverse: true
+        reverse: false
     });
 
     const fetchData = async () => {
@@ -82,19 +82,20 @@ const ResizableComponent = () => {
     return (
         <div className={"flex flex-column h-screen bg-dark font-mono color-white overflow-hidden"}>
             <div className={"flex grow"}>
-                <div className={"grow bg-darker contents"}>
-                    DataNeuron
-                    <h1>Api Call Count = {count}</h1>
-                </div>
-                <Splitter
-                    isDragging={isPluginDragging}
-                    {...pluginDragBarProps}
-                />
+                
                 <div
                     className={cn("shrink-0 contents", isPluginDragging && "dragging")}
                     style={{ width: pluginW }}
                 >
                     <FormComponent formData={formData} onFormChange={handleFormChange} onSubmit={handleSubmit} />
+                </div>
+                <Splitter
+                    isDragging={isPluginDragging}
+                    {...pluginDragBarProps}
+                />
+                <div className={"grow bg-darker contents"}>
+                    DataNeuron
+                    <h1>Api Call Count = {count}</h1>
                 </div>
             </div>
             <Splitter
