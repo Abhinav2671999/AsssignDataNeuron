@@ -107,7 +107,7 @@ const ResizableComponent = () => {
                 )}
                 style={{ height: terminalH }}
             >
-                <TableComponent data={tableData} onEditButtonClick={handleEditButtonClick} />
+                
             </div>
         </div>
     );
