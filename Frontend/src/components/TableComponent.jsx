@@ -2,7 +2,7 @@ import React from "react";
 
 const TableComponent = ({ data, onEditButtonClick }) => {
     return (
-        <div className="grow bg-darker contents" style={{ maxHeight: "250px", overflowY: "auto" }}>
+        <div className="grow bg-darker contents" style={{ maxHeight: "255px", overflowY: "auto" }}>
             <table className="table-fixed w-full">
                 <thead>
                     <tr>
