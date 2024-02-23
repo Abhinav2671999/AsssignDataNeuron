@@ -46,9 +46,6 @@ const ResizableComponent = () => {
         }
     };
 
-    
-
-    // Function to handle form submission (add/update data)
     const handleSubmit = useCallback(async (formData) => {
         try {
             if (formData.id) {
@@ -67,20 +64,21 @@ const ResizableComponent = () => {
         } catch (error) {
             console.error("An unexpected error occurred:", error);
         }
-    });
+    }, [count, tableData]); 
 
-    // useEffect to fetch data on component mount
+    
     useEffect(() => {
         fetchData();
-    }, [handleSubmit]);
-
-    const handleEditButtonClick = (item) => {
+    }, [handleSubmit]); 
+    
+    const handleEditButtonClick = useCallback((item) => {
         console.log(item._id);
         setFormData({ id: item._id, firstName: item.firstName, lastName: item.lastName, email: item.email });
-    };
-    const handleFormChange = (updatedFormData) => {
+    }, []);
+
+    const handleFormChange = useCallback((updatedFormData) => {
         setFormData(updatedFormData);
-    };
+    }, []);
     return (
         <div className={"flex flex-column h-screen bg-dark font-mono color-white overflow-hidden"}>
             <div className={"flex grow"}>
