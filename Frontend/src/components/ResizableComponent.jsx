@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Splitter from "./Splitter";
 import { useResizable } from "react-resizable-layout";
 import { cn } from "../utils/cn";
@@ -45,11 +45,11 @@ const ResizableComponent = () => {
             console.error("An unexpected error occurred:", error);
         }
     };
-    useEffect(() => {
-        fetchData();
-    }, []);
 
-    const handleSubmit = async (formData) => {
+    
+
+    // Function to handle form submission (add/update data)
+    const handleSubmit = useCallback(async (formData) => {
         try {
             if (formData.id) {
                 await updateData(formData);
@@ -67,8 +67,12 @@ const ResizableComponent = () => {
         } catch (error) {
             console.error("An unexpected error occurred:", error);
         }
-        window.location.reload();
-    };
+    });
+
+    // useEffect to fetch data on component mount
+    useEffect(() => {
+        fetchData();
+    }, [handleSubmit]);
 
     const handleEditButtonClick = (item) => {
         console.log(item._id);
