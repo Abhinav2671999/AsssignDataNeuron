@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Splitter from "./Splitter";
 import { useResizable } from "react-resizable-layout";
 import { cn } from "../utils/cn";
@@ -46,7 +46,7 @@ const ResizableComponent = () => {
         }
     };
 
-    const handleSubmit = useCallback(async (formData) => {
+    const handleSubmit = async (formData) => {
         try {
             if (formData.id) {
                 await updateData(formData);
@@ -55,30 +55,33 @@ const ResizableComponent = () => {
                 );
                 setFormData({ id: "", firstName: "", lastName: "", email: "" });
                 setCount(count + 1);
+                // fetchData();
             } else {
                 await addData(formData);
                 setTableData([...tableData, formData]);
                 setFormData({ id: "", firstName: "", lastName: "", email: "" });
                 setCount(count + 1);
+                // fetchData();
             }
+            fetchData();
         } catch (error) {
             console.error("An unexpected error occurred:", error);
         }
-    }, [count, tableData]); 
+    }
 
     
     useEffect(() => {
         fetchData();
-    }, [handleSubmit]); 
+    },[]); 
     
-    const handleEditButtonClick = useCallback((item) => {
+    const handleEditButtonClick = (item) => {
         console.log(item._id);
         setFormData({ id: item._id, firstName: item.firstName, lastName: item.lastName, email: item.email });
-    }, []);
+    }
 
-    const handleFormChange = useCallback((updatedFormData) => {
+    const handleFormChange = (updatedFormData) => {
         setFormData(updatedFormData);
-    }, []);
+    }
     return (
         <div className={"flex flex-column h-screen bg-dark font-mono color-white overflow-hidden"}>
             <div className={"flex grow"}>
@@ -94,8 +97,8 @@ const ResizableComponent = () => {
                     {...pluginDragBarProps}
                 />
                 <div className={"grow bg-darker contents"}>
-                    DataNeuron Reception
-                    <h1>Calling Count = {count}</h1>
+                DataNeuron Reception
+                <h1>Calling Count = {count}</h1>
                 </div>
             </div>
             <Splitter
